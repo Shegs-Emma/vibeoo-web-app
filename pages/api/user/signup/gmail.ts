@@ -3,10 +3,11 @@ import nc from 'next-connect';
 import dbConnect from '../../../../lib/database/db-connect';
 import { User } from '../../../../lib/database/models';
 
-const gmailSignupHandler = nc<NextApiRequest, NextApiResponse<Boolean|null>>();
+const gmailSignupHandler =
+  nc<NextApiRequest, NextApiResponse<Boolean | null>>();
 
 gmailSignupHandler.post(async (req, res) => {
-//   console.log('cammmme');
+  //   console.log('cammmme');
   try {
     // console.log('body', req.body);
     dbConnect();
@@ -19,7 +20,7 @@ gmailSignupHandler.post(async (req, res) => {
     }
     const { _id: newUserId } = await User.create({
       ...req.body,
-      accountType: 'mail',
+      signupMethod: 'google',
     });
     return res.send(newUserId);
   } catch (err) {
