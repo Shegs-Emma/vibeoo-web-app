@@ -1,0 +1,66 @@
+/* eslint-disable max-len */
+export default [
+  {
+    podcastId: 'gsgw4rrwg4trt4t',
+    podcastImageUrl: 'https://vibeoo-uploads.s3.amazonaws.com/1422355821VibeooArt-work.jpg',
+    podcastTitle: 'CBN extends BVN Registration',
+    podcastNaration: 'Online Portal to Train Nigerians to fight Health Issues like Ebola, BBM update',
+    podcastAudioUrl: 'https://vibeoo-uploads.s3.eu-west-2.amazonaws.com/1415727821CNS--S01E07--The-Gross-One.mp3',
+  },
+  {
+    podcastId: 'gsgghky8yjgrwg4trt4t',
+    podcastImageUrl: 'https://vibeoo-uploads.s3.amazonaws.com/1529445187IsGo.jpg',
+    podcastTitle: 'Issa Goal',
+    podcastNaration: 'As we get ready for the a memorable Russia 2018 Finale in Moscow, Shina from Goal Nigeria recaps highlights of the journey to the final',
+    podcastAudioUrl: 'https://vibeoo-uploads.s3.eu-west-2.amazonaws.com/143723113112-WFYW-S02E17--Making-Your-Life-Better-Through-Diligence.mp3',
+  },
+  {
+    podcastId: 'gsgw4rrwgdhgfjyeret4t',
+    podcastImageUrl: 'https://vibeoo-uploads.s3.amazonaws.com/1526574735RTR.jpg',
+    podcastTitle: 'Reminder This Ramadan',
+    podcastNaration: 'Shina focuses on how Ahmed Musa struck both goals as Nigeria boosted their World Cup qualification hopes with a 2-0 defeat of Iceland',
+    podcastAudioUrl: 'https://vibeoo-uploads.s3.eu-west-2.amazonaws.com/143723126513-WFYW-S02E18--The-Power-Of-Consistency.mp3',
+  },
+  {
+    podcastId: 'sfsr34rgw4rrwg4trt4t',
+    podcastImageUrl: 'https://vibeoo-uploads.s3.amazonaws.com/1507329653SoccerParole-Teaser-02.jpg',
+    podcastTitle: 'Spirituality or Religiousness',
+    podcastNaration: 'Shina Oludare is joined by veteran Super Eagles Head Master Mutiu Adepoju as they catch up on Nigeria\'s defeat to Croatia at the Russia 2018 World Cup',
+    podcastAudioUrl: 'https://vibeoo-uploads.s3.eu-west-2.amazonaws.com/143723159016-WFYW-S02E21--How-To-Stop-Worrying.mp3',
+  },
+  {
+    podcastId: 'wdgrttr6trtgrwg4trt4t',
+    podcastImageUrl: 'https://vibeoo-uploads.s3.amazonaws.com/1415735320wisdom-for-the-week.jpg',
+    podcastTitle: 'Soccer Parole',
+    podcastNaration: 'a reminder to the listeners on understanding the importance and the effects of spirituality and religiousness in Islam',
+    podcastAudioUrl: 'https://vibeoo-uploads.s3.eu-west-2.amazonaws.com/143723181017-WFYW-S02E22--Dont-Complain-Do-These-Instead.mp3',
+  },
+  {
+    podcastId: 'gsgw4rrwg4trtfsfwew434t',
+    podcastImageUrl: 'https://vibeoo-uploads.s3.amazonaws.com/1413160906yomi-black.jpg',
+    podcastTitle: 'Wisdom For Your Week',
+    podcastNaration: 'a reminder to the listeners to be more conscious during Salat in order to achieve a high level of concentration through a better part of their Salat',
+    podcastAudioUrl: 'https://vibeoo-uploads.s3.eu-west-2.amazonaws.com/143723190418-WFYW-S02E23--Six-Ways-To-Maximize-A-New-Season.mp3',
+  },
+  {
+    podcastId: 'gsgw4rrw453535redf',
+    podcastImageUrl: 'https://vibeoo-uploads.s3.amazonaws.com/1415735369love-life-and-everything-in-between.jpg',
+    podcastTitle: 'Mirror Mirror',
+    podcastNaration: 'An interesting conversation to our listeners on why it’s important to read the Qur’an in Arabic even though they can always read in English',
+    podcastAudioUrl: 'https://vibeoo-uploads.s3.eu-west-2.amazonaws.com/143723456521-WFYW-S02E26--5-Questions-Every-Man-Should-Answer.mp3',
+  },
+  {
+    podcastId: 'gsgw4rrwg4trt4t55676577',
+    podcastImageUrl: 'https://vibeoo-uploads.s3.amazonaws.com/1413160786mirror-mirror.jpg',
+    podcastTitle: 'The Inspire Series',
+    podcastNaration: 'A reminder to the listeners to be cautious of worldly desires. We have asked different Muslims what the Quran says on this topic.',
+    podcastAudioUrl: 'https://vibeoo-uploads.s3.eu-west-2.amazonaws.com/143723302420-WFYW-S02E25--How-To-Be-Exceptional-In-Life.mp3',
+  },
+  {
+    podcastId: 'gsgw4rrsdt5rgfe5rgvt',
+    podcastImageUrl: 'https://vibeoo-uploads.s3.amazonaws.com/1415734282inspired-by-glory.jpg',
+    podcastTitle: 'Corks and Screws',
+    podcastNaration: '3 African Teams have qualified, NFF Chairman gives team ultimatum and more',
+    podcastAudioUrl: 'https://vibeoo-uploads.s3.eu-west-2.amazonaws.com/143723486722-WFYW-S02E27--3-Truths-About-Time.mp3',
+  },
+];
