@@ -3,10 +3,10 @@ import nc from 'next-connect';
 import dbConnect from '../../../../lib/database/db-connect';
 import { User } from '../../../../lib/database/models';
 
-const fbSignupHandler = nc<NextApiRequest, NextApiResponse<Boolean|null>>();
+const fbSignupHandler = nc<NextApiRequest, NextApiResponse<Boolean | null>>();
 
 fbSignupHandler.post(async (req, res) => {
-//   console.log('cammmme');
+  //   console.log('cammmme');
   try {
     // console.log('body', req.body);
     dbConnect();
@@ -19,7 +19,7 @@ fbSignupHandler.post(async (req, res) => {
     }
     const { _id: newUserId } = await User.create({
       ...req.body,
-      accountType: 'facebook',
+      signupMethod: 'facebook',
     });
     return res.send(newUserId);
   } catch (err) {

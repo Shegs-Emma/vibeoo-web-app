@@ -1,15 +1,13 @@
-import {
-  Schema, model, Document, Model,
-} from 'mongoose';
+import { Schema, model, Document, Model } from 'mongoose';
 
 interface IUser extends Document {
-  username: String,
-  googleId?: String,
-  twitterId?: String,
-  facebookId?: String,
-  email: String,
-  accountType?: String,
-  profilePicture: String,
+  username: String;
+  googleId?: String;
+  twitterId?: String;
+  facebookId?: String;
+  email: String;
+  signupMethod: String;
+  profilePicture: String;
 }
 
 const userSchema: Schema<IUser> = new Schema({
@@ -18,7 +16,7 @@ const userSchema: Schema<IUser> = new Schema({
   twitterId: String,
   facebookId: String,
   email: { type: String, default: '' },
-  accountType: { type: String, required: true },
+  signupMethod: { type: String, required: true },
   profilePicture: { type: String, default: '' },
 });
 

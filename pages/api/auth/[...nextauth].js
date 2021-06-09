@@ -51,9 +51,9 @@ const options = {
   },
   callbacks: {
     signIn: async (user, account, profile) => {
-      // console.log('acct', account);
-      // console.log('user', user);
-      // console.log('profile', profile);
+      console.log('acct', account);
+      console.log('user', user);
+      console.log('profile', profile);
       if (account.type === 'oauth') {
         console.log('came to signin oauth');
         if (account.provider === 'google') {

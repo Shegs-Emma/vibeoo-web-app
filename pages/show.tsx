@@ -2,9 +2,16 @@ import Image from 'next/image';
 import { useState } from 'react';
 import AppLayout from '../components/Layout';
 import {
-  ShowPageContainer, ShowPageBannerContainer, ShowInfoContainer,
-  ShowImageContainer, ShowDescContainer, ShowTitle, ShowAuthor, ShowGenre,
-  ShowFollowBtn, ShareShowContainer,
+  ShowPageContainer,
+  ShowPageBannerContainer,
+  ShowInfoContainer,
+  ShowImageContainer,
+  ShowDescContainer,
+  ShowTitle,
+  ShowAuthor,
+  ShowGenre,
+  ShowFollowBtn,
+  ShareShowContainer,
 } from '../styles/Show.styled';
 
 const ShowPage = () => {
@@ -24,21 +31,18 @@ const ShowPage = () => {
               />
             </ShowImageContainer>
             <ShowDescContainer>
-              <ShowTitle variant="h2">
-                Issa goal
-              </ShowTitle>
-              <ShowAuthor variant="h6" component="p">
+              <ShowTitle variant="h2">Issa goal</ShowTitle>
+              <ShowAuthor variant="h6" component="body1">
                 mimi onalaja
               </ShowAuthor>
-              <ShowGenre variant="h6" component="p">
+              <ShowGenre variant="h6" component="body1">
                 lifestyle
               </ShowGenre>
               <ShowFollowBtn
                 isFollowing={isFollowing}
                 onClick={() => setFollowing(!isFollowing)}
               >
-                { isFollowing ? 'following' : 'follow'}
-
+                {isFollowing ? 'following' : 'follow'}
               </ShowFollowBtn>
             </ShowDescContainer>
           </ShowInfoContainer>
@@ -72,7 +76,6 @@ const ShowPage = () => {
             </div>
           </ShareShowContainer>
         </ShowPageBannerContainer>
-
       </ShowPageContainer>
     </AppLayout>
   );
