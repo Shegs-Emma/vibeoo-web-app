@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
-import CustomLink, { props as CustomLinkProps } from '../components/CustomLink';
+import CustomLink from '../components/CustomLink';
 import { ButtonWithIcon, GlobalDropdownMenu } from './Global.styled';
 
 const activePage = () => (
@@ -28,7 +28,7 @@ const ExploreDropdownMenu = styled(GlobalDropdownMenu)`
     }
 `;
 
-const ExploreDropdownLink = styled(CustomLink)`
+const ExploreDropdownLink = styled(CustomLink)<{isActiveContent: boolean}>`
     width: 100%;
     text-align: center;
         ${(props) => (props.isActiveContent ? activePage() : '')}

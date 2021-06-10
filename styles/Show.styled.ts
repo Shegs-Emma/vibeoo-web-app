@@ -40,11 +40,11 @@ const ShowDescContainer = styled.div`
 const ShowTitle = styled(Typography)`
   font-size: 2.35rem;
 `;
-const ShowAuthor = styled(Typography)`
+const ShowAuthor = styled(Typography)<{component: 'body1'}>`
   color: black;
   text-transform: capitalize;
 `;
-const ShowGenre = styled(Typography)`
+const ShowGenre = styled(Typography)<{component: 'body1'}>`
   text-transform: capitalize;
 `;
 

@@ -39,6 +39,7 @@
         "no-mutable-exports": "off",
         "react/prop-types": "off",
         "max-len": ["warn", 110],
-        "no-param-reassign":"off"
+        "no-param-reassign":"off",
+        "import/extensions": ["error","never",{"svg":"always"}]
     }
 }

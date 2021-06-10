@@ -55,7 +55,7 @@ const ListenIn = ({ pageName }:Props) => {
             aria-haspopup="true"
             variant="contained"
             endIcon={<ArrowDropDownIcon />}
-            screenSize="desktop"
+            screensize="desktop"
             onClick={() => setDropdownStatusDesktop(!showDropdownDesktop)}
           >
             {currentRecommendation}
@@ -69,10 +69,9 @@ const ListenIn = ({ pageName }:Props) => {
               onClick={() => {
                 setCurrentRecommendation(recommendation);
               }}
+              // isActiveContent={currentRecommendation === recommendation}
             >
-              <RecommendationDropdownLink isActiveContent={currentRecommendation === recommendation}>
-                { recommendation }
-              </RecommendationDropdownLink>
+              { recommendation }
             </MenuItem>
           ))
         }
@@ -85,7 +84,7 @@ const ListenIn = ({ pageName }:Props) => {
           aria-haspopup="true"
           variant="contained"
           endIcon={<ArrowDropDownIcon />}
-          screenSize="mobile"
+          screensize="mobile"
           onClick={() => setDropdownStatusMobile(!showDropdownMobile)}
         >
           {currentRecommendation}
@@ -99,10 +98,9 @@ const ListenIn = ({ pageName }:Props) => {
               onClick={() => {
                 setCurrentRecommendation(recommendation);
               }}
+              // isActiveContent={currentRecommendation === recommendation}
             >
-              <RecommendationDropdownLink isActiveContent={currentRecommendation === recommendation}>
-                { recommendation }
-              </RecommendationDropdownLink>
+              { recommendation }
             </MenuItem>
           ))
         }

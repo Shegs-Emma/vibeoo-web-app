@@ -40,7 +40,7 @@ const StyledDivider = styled(Typography)`
 const StyledVolumeContainer = styled.div`
     width: 77%;
 `;
-const StyledVolumeControl = styled(Slider)`
+const StyledVolumeControl = styled(Slider)<{type: 'range'}>`
     & .MuiSlider-rail {
         background-color: whitesmoke;
     }
