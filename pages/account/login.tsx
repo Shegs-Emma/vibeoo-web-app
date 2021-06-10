@@ -18,7 +18,7 @@ const LogoContainer = styled.div`
 `;
 
 const LogUserInFromVerificationLInk = () => {
-  const [loginStatus, setLoginStatus] = useState('Wait while we set up your account ...');
+  const [loginStatus, setLoginStatus] = useState('Take a coffee ☕ while we set up your account ...');
   const router = useRouter();
   useEffect(() => {
     async function checkUser() {
@@ -33,13 +33,13 @@ const LogUserInFromVerificationLInk = () => {
             signIn('credentials', {
               email: response.email,
               id: response.userId,
-              callbackUrl: 'http://localhost:3000/listen',
+              callbackUrl: `${process.env.NEXT_PUBLIC_VERCEL_URL}/listen`,
             });
           } else {
             setLoginStatus('Invalid link');
           }
         } else {
-          router.replace('http://localhost:3000/');
+          router.replace(process.env.NEXT_PUBLIC_VERCEL_URL as string);
         }
       }
     }

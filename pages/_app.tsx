@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { Provider as AuthProvider } from 'next-auth/client';
 import materialTheme from '../material-ui/theme-default-overrides';
 import { store as reduxStore } from '../redux/store';
+import LoggedInPodcastPlayer from '../components/LoggedInPodcastPlayer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Provider store={reduxStore}>
           <AuthProvider session={pageProps.session}>
             <Component {...pageProps} />
+            {/* <LoggedInPodcastPlayer /> */}
           </AuthProvider>
         </Provider>
       </StylesProvider>

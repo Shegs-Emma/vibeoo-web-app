@@ -1,5 +1,5 @@
 import {
-  useState, useRef, useEffect, ReactEventHandler, SyntheticEvent,
+  useState, useRef, useEffect, ReactEventHandler, SyntheticEvent, ChangeEvent,
 } from 'react';
 import Wavesurfer from 'react-wavesurfer.js';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
@@ -84,7 +84,7 @@ const PodcastPlayer = ({ podcastData }:PodcastPlayerProps) => {
     setPlaying(false);
     if (audioRef.current) audioRef.current.currentTime = 0;
   };
-  const changeAudioVolume = (e: SyntheticEvent<HTMLAudioElement, Event>, volumeValue: number | number[]) => {
+  const changeAudioVolume = (e: ChangeEvent<{}>, volumeValue: number | number[]) => {
     if (audioRef.current) audioRef.current.volume = volumeValue as number;
     setVolume(volumeValue as number);
   };
@@ -139,11 +139,6 @@ const PodcastPlayer = ({ podcastData }:PodcastPlayerProps) => {
         </StyledVolumeContainer>
 
       </AudioPlayerContainer>
-      {/* <AudioPlayer
-        autoPlay={false}
-        src={audioUrl}
-        onPlay={(e) => console.log('onPlay')}
-      /> */}
     </>
   );
 };

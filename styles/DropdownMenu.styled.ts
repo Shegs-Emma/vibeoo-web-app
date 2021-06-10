@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
-import CustomLink from '../components/CustomLink';
+import CustomLink, { props as CustomLinkProps } from '../components/CustomLink';
 import { ButtonWithIcon, GlobalDropdownMenu } from './Global.styled';
 
 const activePage = () => (

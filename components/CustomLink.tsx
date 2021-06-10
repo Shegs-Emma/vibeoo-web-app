@@ -1,6 +1,6 @@
 import { forwardRef, ReactNode, MouseEventHandler } from 'react';
 
-type Props = {
+export type Props = {
     children: ReactNode;
     href: string;
     className:string;

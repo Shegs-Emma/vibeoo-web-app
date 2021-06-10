@@ -36,7 +36,7 @@ const ButtonWithIcon = styled(Button)`
     }
     
 `;
-const GlobalDropdownMenu = styled.div`
+const GlobalDropdownMenu = styled.div<{open: boolean}>`
     display: ${(props) => (props.open ? 'block' : 'none')};
     background-color: red;
     position: absolute;

@@ -33,7 +33,7 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
               const { _id } = await loginUser(values);
               // console.log('login page', userId);
               signIn('credentials',
-                { email: values.email, id: _id, callbackUrl: 'http://localhost:3000/listen' });
+                { email: values.email, id: _id, callbackUrl: `${process.env.NEXT_PUBLIC_VERCEL_URL}/listen` });
             } catch (err) {
               console.log('login', err);
               setSubmitting(false);
@@ -130,7 +130,7 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
                 startIcon={<ArrowRightIcon />}
                 socialMedia="facebook"
                 onClick={() => {
-                  signIn('facebook', { callbackUrl: 'http://localhost:3000/listen' });
+                  signIn('facebook', { callbackUrl: `${process.env.NEXT_PUBLIC_VERCEL_URL}/listen` });
                 }}
               >
                 Sign up with Facebook
@@ -143,7 +143,7 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
                 startIcon={<ArrowRightIcon />}
                 socialMedia="gmail"
                 onClick={() => {
-                  signIn('google', { callbackUrl: 'http://localhost:3000/listen' });
+                  signIn('google', { callbackUrl: `${process.env.NEXT_PUBLIC_VERCEL_URL}/listen` });
                 }}
               >
                 Sign up with Gmail
