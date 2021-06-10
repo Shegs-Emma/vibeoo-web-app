@@ -15,7 +15,7 @@ const ExploreNavigationLg = styled.div`
         display: none;
     }
 `;
-const ExploreNavLgLink = styled(CustomLink)`
+const ExploreNavLgLink = styled(CustomLink)<{isActiveContent: boolean}>`
     color: #fff;
     margin-right: 1rem;
     cursor: pointer;

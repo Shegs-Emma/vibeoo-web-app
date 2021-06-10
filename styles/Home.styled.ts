@@ -18,8 +18,7 @@ const HomeListenInBannerMainText = styled(Typography)`
     font-weight: 700;
 
 `;
-const HomeBannerSecondaryText = styled(Typography)`
-    color: ${(props) => (props.textcolor === 'dark' ? 'black' : '#fff')};
+const HomeBannerSecondaryText = styled(Typography)<{component: 'p'}>`
     line-height: 2.32rem;
     font-weight: 600;
 `;
@@ -69,7 +68,7 @@ const HomeListenInIntroContainer = styled.div`
 
 const StyledLink = styled(CustomButtonLink)`
     text-transform: none;
-    color: #470D25;
+    color: #470D25; 
     font-weight: 700;
     background-color: yellow;
     padding-left: 1.48rem;

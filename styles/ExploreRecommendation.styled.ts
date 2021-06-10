@@ -18,8 +18,8 @@ const forMobile = () => (
   `
 );
 
-const ExploreRecommendationStyle = styled.div`
-    ${(props) => (props.isMobile ? forMobile() : '')}
+const ExploreRecommendationStyle = styled.div<{ismobile: boolean}>`
+    ${(props) => (props.ismobile ? forMobile() : '')}
 `;
 
 export default ExploreRecommendationStyle;

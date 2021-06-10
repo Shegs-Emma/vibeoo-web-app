@@ -26,9 +26,10 @@ const Waveform = ({
 }:WaveformProps) => {
   // console.log('curr', currentTime);
   // console.log('dura', duration);
-  const svgRef = useRef<SVGElement>(null);
+
+  const svgRef = useRef<SVGSVGElement>(null);
   // console.log(svgRef);
-  const handleClick = (e:MouseEvent) => {
+  const handleClick = (e: MouseEvent) => {
     if (svgRef.current?.getBoundingClientRect() && duration) {
       const svgRefBoundingClientRect = svgRef.current?.getBoundingClientRect();
       const svgRefPosition = e.clientX - svgRefBoundingClientRect.left;
@@ -82,10 +83,10 @@ const Waveform = ({
   const trip = trap();
   return (
     <ProgressBarContainer>
-      <TotalProgressBar onClick={handleClick} ref={svgRef}>
+      <TotalProgressBar onClick={() => handleClick} ref={svgRef}>
         {trip.node1}
       </TotalProgressBar>
-      <CurrentProgressBar currTime={currentTime} duration={duration} onClick={handleClick}>
+      <CurrentProgressBar currTime={currentTime} duration={duration} onClick={() => handleClick}>
         {trip.node2}
       </CurrentProgressBar>
     </ProgressBarContainer>

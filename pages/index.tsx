@@ -58,7 +58,7 @@ const Home = () => {
               <Typography variant="h5">
                 Discover, curate and broadcast audio content by amazing creators with Radio On Demand
               </Typography>
-              <HomeBannerSecondaryText variant="body2" component="p" paragraph textcolor="dark">
+              <HomeBannerSecondaryText variant="body2" component="p" paragraph>
                 Tourists require No Login and Citizen access,
                 All Features Subscribe to TurnUpAfrica to Stay Tuned.
               </HomeBannerSecondaryText>

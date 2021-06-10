@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import { StyledFormInput, ButtonWithIcon } from './Global.styled';
 
-const socialBtnColor = (socialMedia) => {
+const socialBtnColor = (socialMedia: string) => {
   switch (socialMedia) {
     case 'twitter':
       return 'blue';
@@ -19,7 +19,7 @@ const LoginSignupContainer = styled.div`
     flex-direction: column;
 `;
 
-const LoginSignupTitle = styled(Typography)`
+const LoginSignupTitle = styled(Typography)<{component: 'p'}>`
     text-align: center;
 `;
 const LoginSignupFormContainer = styled.div`
@@ -30,7 +30,7 @@ const LoginSignupInputField = styled(StyledFormInput)`
     margin-bottom: 1rem;
 `;
 
-const SocialSignupBtn = styled(ButtonWithIcon)`
+const SocialSignupBtn = styled(ButtonWithIcon)<{socialMedia: string}>`
   background-color: ${(props) => socialBtnColor(props.socialMedia)}
 `;
 

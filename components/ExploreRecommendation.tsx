@@ -11,7 +11,7 @@ const ExploreRecommendation = ({ children }:ExploreRecommendationProps) => {
 
   console.log(isTouchScreen);
   return (
-    <ExploreRecommendationStyle isMobile={isTouchScreen}>
+    <ExploreRecommendationStyle ismobile={isTouchScreen}>
       { children }
     </ExploreRecommendationStyle>
   );

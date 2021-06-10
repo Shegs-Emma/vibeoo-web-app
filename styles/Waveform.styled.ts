@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+interface CurrentProgressBarProps {
+  duration: number | undefined,
+  currTime: number | undefined,
+}
+
 const generalProgressBar = `
     position: absolute;
     height: 16%;
@@ -15,11 +20,11 @@ const TotalProgressBar = styled.svg`
     width: 53%;
 `;
 
-const CurrentProgressBar = styled.svg.attrs((props) => ({
+const CurrentProgressBar = styled.svg.attrs<CurrentProgressBarProps>((props) => ({
   style: {
     width: props.currTime && props.duration ? `calc(53% * ${props.currTime / props.duration}` : '0',
   },
-}))`
+}))<CurrentProgressBarProps>`
     ${generalProgressBar}
     
 `;

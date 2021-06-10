@@ -9,7 +9,7 @@ const activePage = () => (
         `
 );
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button)<{bgcolor?: string}>`
     background-color: ${(props) => (props.bgcolor === 'light' ? 'fff' : 'Yellow')};
     padding-left: 1.48rem;
     padding-right: 1.48rem;
@@ -48,7 +48,7 @@ const GlobalDropdownMenu = styled.div<{open: boolean}>`
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 `;
 
-const GlobalDropdownLink = styled(CustomLink)`
+const GlobalDropdownLink = styled(CustomLink)<{isActiveContent: boolean}>`
     width: 100%;
     text-align: center;
         ${(props) => (props.isActiveContent ? activePage() : '')}

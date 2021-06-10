@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -14,6 +15,6 @@ const transporter = nodemailer.createTransport({
     accessToken: process.env.OAUTH_ACCESS_TOKEN,
   },
   tls: { rejectUnauthorized: false },
-});
+} as SMTPTransport.Options);
 
 export default transporter;

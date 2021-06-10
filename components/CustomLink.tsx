@@ -2,9 +2,9 @@ import { forwardRef, ReactNode, MouseEventHandler } from 'react';
 
 export type Props = {
     children: ReactNode;
-    href: string;
-    className:string;
-    onClick:MouseEventHandler<HTMLAnchorElement>
+    href?: string;
+    className?:string;
+    onClick?:MouseEventHandler<HTMLAnchorElement>
 };
 type Ref = HTMLAnchorElement;
 const CustomLink = forwardRef<Ref, Props>(({

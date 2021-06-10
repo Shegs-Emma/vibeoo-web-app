@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button';
 
 type Props = {
     children: ReactNode;
-    href: string;
-    className:string;
-    onClick:MouseEventHandler<HTMLAnchorElement>
+    href?: string;
+    className?:string;
+    onClick?:MouseEventHandler<HTMLButtonElement>
 };
-type Ref = HTMLAnchorElement;
+type Ref = HTMLButtonElement;
 const CustomButtonLink = forwardRef<Ref, Props>(({
   className, href, onClick, children,
 }, ref) => (

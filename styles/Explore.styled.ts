@@ -3,6 +3,10 @@ import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
 import { ButtonWithIcon, GlobalDropdownMenu, GlobalDropdownLink } from './Global.styled';
 
+interface BannerTextProps {
+    component: 'h1' | 'h2'
+}
+
 const activePage = () => (
   `background-color: black;
       color: #fff;
@@ -38,7 +42,7 @@ const BannerImgContainer = styled.div`
     }
 `;
 
-const BannerText = styled(Typography)`
+const BannerText = styled(Typography)<BannerTextProps>`
     color: black;
     font-size: 1.25rem;
     margin-bottom: 1rem;
@@ -62,15 +66,15 @@ const ExploreRecommendationTitle = styled.p`
     font-weight: bold;
 `;
 
-const RecommendationDropdownBtn = styled(ButtonWithIcon)`
+const RecommendationDropdownBtn = styled(ButtonWithIcon)<{screensize: string}>`
     width: 33.63%;
     min-width: fit-content;
     @media(min-width: 549px){
-        display: ${(props) => (props.screenSize === 'mobile' ? 'none' : 'flex')};
+        display: ${(props) => (props.screensize === 'mobile' ? 'none' : 'flex')};
         width: 43.63%;
     }
     @media(max-width: 549px){
-        display: ${(props) => (props.screenSize === 'desktop' ? 'none' : 'flex')};
+        display: ${(props) => (props.screensize === 'desktop' ? 'none' : 'flex')};
     }
 `;
 
