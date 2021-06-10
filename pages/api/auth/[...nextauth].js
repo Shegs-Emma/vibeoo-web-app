@@ -41,7 +41,6 @@ const options = {
       clientSecret: '',
     }),
   ],
-  // database: process.env.DATABASE_URI,
   session: {
     jwt: true,
     maxAge: 24 * 60,
@@ -51,9 +50,9 @@ const options = {
   },
   callbacks: {
     signIn: async (user, account, profile) => {
-      console.log('acct', account);
-      console.log('user', user);
-      console.log('profile', profile);
+      // console.log('acct', account);
+      // console.log('user', user);
+      // console.log('profile', profile);
       if (account.type === 'oauth') {
         console.log('came to signin oauth');
         if (account.provider === 'google') {
@@ -80,21 +79,21 @@ const options = {
       }
       if (account.type === 'email' && !profile.verificationRequest) {
         user.id = await signupViaEmail(profile.email);
-        console.log('user', user);
+        // console.log('user', user);
         return !!user.id;
       }
       return true;
     },
     session: async (session, token) => {
-      console.log('session-token-d', token.id);
+      // console.log('session-token-d', token.id);
       const dbUser = await fetchUserFromDb(token.id);
       if (!dbUser) return null;
       session.user = { ...dbUser };
       return session;
     },
     jwt: async (token, user) => {
-      console.log('jwt-user', user);
-      console.log('jwt-token', token);
+      // console.log('jwt-user', user);
+      // console.log('jwt-token', token);
       if (user) token = { id: user.id };
       return token;
     },
