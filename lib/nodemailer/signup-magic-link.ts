@@ -22,7 +22,7 @@ const sendSignupConfirmationLink = async ({
                           <p style="color: blue">I will try to send you a confirmation link. Thanks</p>
                           <p>Click 
                               <a 
-                      href=${process.env.NEXT_PUBLIC_VERCEL_URL}/account/login?e=${recipient}&t=${token} 
+                      href=${process.env.NEXTAUTH_URL}/account/login?e=${recipient}&t=${token} 
                               target="_blank">here</a> to activate your account</p>
                       </div>`,
     });

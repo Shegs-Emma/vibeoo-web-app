@@ -33,13 +33,13 @@ const LogUserInFromVerificationLInk = () => {
             signIn('credentials', {
               email: response.email,
               id: response.userId,
-              callbackUrl: `${process.env.NEXT_PUBLIC_VERCEL_URL}/listen`,
+              callbackUrl: `${process.env.NEXTAUTH_URL}/listen`,
             });
           } else {
             setLoginStatus('Invalid link');
           }
         } else {
-          router.replace(process.env.NEXT_PUBLIC_VERCEL_URL as string);
+          router.replace(process.env.NEXTAUTH_URL as string);
         }
       }
     }

@@ -65,7 +65,7 @@ const fetchUserFromDb = async (userId: String) => {
   console.log(userId);
   const response = await axios({
     method: 'GET',
-    url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/user/get-user/${userId}`,
+    url: `${process.env.NEXTAUTH_URL}/api/user/get-user/${userId}`,
   });
   return response.data;
 };
@@ -74,7 +74,7 @@ const saveGoogleUser = async (googleProfile: userGoogleData) => {
   // console.log(googleProfile);
   const response = await axios({
     method: 'POST',
-    url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/user/signup/gmail`,
+    url: `${process.env.NEXTAUTH_URL}/api/user/signup/gmail`,
     data: {
       ...googleProfile,
     },
@@ -87,7 +87,7 @@ const saveFbUser = async (fbProfile: userFbData) => {
   // console.log(googleProfile);
   const response = await axios({
     method: 'POST',
-    url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/user/signup/fb`,
+    url: `${process.env.NEXTAUTH_URL}/api/user/signup/fb`,
     data: {
       ...fbProfile,
     },
