@@ -1,13 +1,10 @@
 import {
   useState, useRef, useEffect, ReactEventHandler, SyntheticEvent, ChangeEvent,
 } from 'react';
-import Wavesurfer from 'react-wavesurfer.js';
-import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import IconButton from '@material-ui/core/IconButton';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import Waveform from './Waveform';
-import 'react-h5-audio-player/lib/styles.css';
 import {
   AudioPlayerContainer, ProgressBarSection, StyledIconButton, PlayerTimeContainer, StyledDuration,
   StyledCurrentTime, StyledDivider, StyledVolumeContainer, StyledVolumeControl,
