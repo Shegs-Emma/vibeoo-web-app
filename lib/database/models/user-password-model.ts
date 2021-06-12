@@ -25,8 +25,8 @@ const userPasswordSchema = new Schema<IUserPasswordDocument>({
 });
 
 userPasswordSchema.methods.compareUserPwd = async function (pwdToCompare: string) {
-  // const pwdIsAMatch = await bcrypt.compare(pwdToCompare, this.userPwdHash as string);
-  const pwdIsAMatch = pwdToCompare === this.userPwdHash as string;
+  const pwdIsAMatch = await bcrypt.compare(pwdToCompare, this.userPwdHash as string);
+  // const pwdIsAMatch = pwdToCompare === this.userPwdHash as string;
   return pwdIsAMatch;
 };
 
