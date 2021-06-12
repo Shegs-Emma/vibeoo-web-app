@@ -4,7 +4,7 @@ import dbConnect from '../../../lib/database/db-connect';
 import { User, PendingUser, UserPwd } from '../../../lib/database/models';
 import sendSignupConfirmationLink from '../../../lib/nodemailer/signup-magic-link';
 
-const mailerHandler = nc<NextApiRequest, NextApiResponse<boolean|{error: boolean, errorMessage: string}>>();
+const mailerHandler = nc<NextApiRequest, NextApiResponse< boolean|{error: boolean, errorMessage: string}>>();
 
 mailerHandler.post(async (req, res) => {
   const { email, username, password } = req.body;
@@ -62,8 +62,7 @@ mailerHandler.post(async (req, res) => {
         token: userToken,
       });
     }
-
-    return res.status(200);
+    return res.send(true);
   } catch (err) {
     console.log(err);
     return res.json({

@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import AppHeader from './Header';
 import GeneralModal from './Modal';
 import AppFooter from './Footer';
-import LoggedInPodcastPlayer from './LoggedInPodcastPlayer';
+// import LoggedInPodcastPlayer from './LoggedInPodcastPlayer';
 
 interface AppLayoutProps {
   children: ReactElement | ReactElement[]
@@ -14,7 +14,7 @@ const AppLayout = ({ children }:AppLayoutProps) => (
     <GeneralModal />
     { children }
     <AppFooter />
-    <LoggedInPodcastPlayer />
+    {/* <LoggedInPodcastPlayer /> */}
   </>
 );
 

@@ -24,7 +24,7 @@ const requestForSignupConfirmationLink = async ({
   if (response.data.error) {
     throw new Error(response.data.errorMessage);
   }
-  return response.status;
+  return true;
 };
 
 export default requestForSignupConfirmationLink;

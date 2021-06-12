@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { signIn } from 'next-auth/client';
 import { Formik } from 'formik';
 import Typography from '@material-ui/core/Typography';
@@ -16,6 +17,9 @@ type LoginSignupProp = {
 }
 
 const LoginSignup = ({ type }: LoginSignupProp) => {
+	const [btnText, setBtnText] = useState(type === 'login' ? 'Login' : 'Sign up')
+	const [disableBtn, setDisableBtn] = useState(false);
+  const submitBtnRef = useRef<HTMLButtonElement>(null);
   // const initialValuesLogin:
   //   {email: string, password: string} = { email: '', password: '' };
   const initialValues:
@@ -27,7 +31,8 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
         validationSchema={type === 'login' ? loginSchema : signupSchema}
         initialValues={initialValues}
         onSubmit={async (values, { setSubmitting, setFieldError }) => {
-          setSubmitting(true);
+			setDisableBtn(true);
+          //setSubmitting(true);
           if (type === 'login') {
             try {
               const { _id } = await loginUser(values);
@@ -36,20 +41,24 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
                 { email: values.email, id: _id, callbackUrl: `${process.env.NEXTAUTH_URL}/listen` });
             } catch (err) {
               console.log('login', err);
-              setSubmitting(false);
+			  setDisableBtn(false);
+              //setSubmitting(false);
               setFieldError('password', err.message);
             }
           } else {
             try {
-              setSubmitting(false);
-              await requestForSignupConfirmationLink({
+              const response = await requestForSignupConfirmationLink({
                 recipient: values.email,
                 recipientUsername: values.username,
                 recipientPassword: values.password,
               });
+              if (response) {
+				  setBtnText("EMAIL SENT");
+              }
             } catch (err) {
               console.log('signup', err);
-              setSubmitting(false);
+			  setDisableBtn(false);
+              //setSubmitting(false);
               setFieldError('password', err.message);
             }
           }
@@ -107,10 +116,10 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
               />
               <Typography>Forgot password?</Typography>
               <StyledButton
-                disabled={isSubmitting}
+                disabled={disableBtn}
                 type="submit"
               >
-                {type === 'login' ? 'Login' : 'Sign up'}
+                {btnText}
 
               </StyledButton>
               {/* <SocialSignupBtn
