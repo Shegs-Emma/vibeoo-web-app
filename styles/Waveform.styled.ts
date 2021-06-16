@@ -5,9 +5,9 @@ interface CurrentProgressBarProps {
   currTime: number | undefined,
 }
 
-const generalProgressBar = `
+const generalProgressBar = (isLoggedIn:boolean = false) =>`
     position: absolute;
-    height: 16%;
+    height: ${isLoggedIn ? '41%' : '16%'};
 `;
 
 const ProgressBarContainer = styled.div`
@@ -16,7 +16,7 @@ const ProgressBarContainer = styled.div`
 `;
 
 const TotalProgressBar = styled.svg`
-    ${generalProgressBar}
+    ${(props) => generalProgressBar()}
     width: 53%;
 `;
 
@@ -25,7 +25,27 @@ const CurrentProgressBar = styled.svg.attrs<CurrentProgressBarProps>((props) => 
     width: props.currTime && props.duration ? `calc(53% * ${props.currTime / props.duration}` : '0',
   },
 }))<CurrentProgressBarProps>`
-    ${generalProgressBar}
+    ${(props) => generalProgressBar()}
     
 `;
-export { ProgressBarContainer, TotalProgressBar, CurrentProgressBar };
+const ProgressBarContainerLoggedIn = styled.div`
+    width: 100%;
+    padding-top: .25rem;
+    margin: .53rem 0 2rem .5rem;
+`;
+
+const TotalProgressBarLoggedIn = styled.svg`
+    ${(props) => generalProgressBar(true)}
+    width: 50%;
+`;
+
+const CurrentProgressBarLoggedIn = styled.svg.attrs<CurrentProgressBarProps>((props) => ({
+  style: {
+    width: props.currTime && props.duration ? `calc(50% * ${props.currTime / props.duration}` : '0',
+  },
+}))<CurrentProgressBarProps>`
+    ${(props) => generalProgressBar(true)}
+    
+`;
+
+export { ProgressBarContainer, TotalProgressBar, CurrentProgressBar, ProgressBarContainerLoggedIn, TotalProgressBarLoggedIn, CurrentProgressBarLoggedIn };

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useSession } from 'next-auth/client';
 import { useAppDispatch } from '../redux/hooks';
 import { showModalDialog } from '../redux/modal/modalSlice';
 import { setPodcastPlayerData } from '../redux/player/playerSlice';
@@ -20,6 +21,7 @@ interface EpisodeItemProps {
 }
 
 const EpisodeItem = ({ podcastData }:EpisodeItemProps) => {
+  const [session, loading] = useSession();
   const {
     podcastImageUrl, podcastTitle, podcastNaration,
   } = podcastData;
@@ -44,7 +46,7 @@ const EpisodeItem = ({ podcastData }:EpisodeItemProps) => {
           <EpisodeItemDetailPlayContainer
             onClick={() => {
               dispatch(setPodcastPlayerData(podcastData));
-              dispatch(showModalDialog('playPodcast'));
+              if (!session && !loading) dispatch(showModalDialog('playPodcast'));
             }}
           >
             <Image

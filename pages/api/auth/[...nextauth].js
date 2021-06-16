@@ -43,7 +43,7 @@ const options = {
   ],
   session: {
     jwt: true,
-    maxAge: 24 * 60,
+    maxAge: 24 * 60 * 60,
   },
   jwt: {
     secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',

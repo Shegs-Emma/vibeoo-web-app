@@ -1,9 +1,10 @@
 import {
-  useRef, Dispatch,
+  useRef, Dispatch, MouseEvent 
 } from 'react';
-import { ProgressBarContainer, TotalProgressBar, CurrentProgressBar } from '../styles/Waveform.styled';
+import { ProgressBarContainer, TotalProgressBar, CurrentProgressBar, ProgressBarContainerLoggedIn, TotalProgressBarLoggedIn, CurrentProgressBarLoggedIn  } from '../styles/Waveform.styled';
 
 interface WaveformProps {
+  isLoggedIn?: boolean;
   currentTime: number | undefined;
   duration: number | undefined;
   waveFormData: Array<number>;
@@ -22,7 +23,7 @@ type waveConfig = {
 }
 
 const Waveform = ({
-  currentTime, duration, waveFormData, seekTimeHandler,
+  currentTime, duration, waveFormData, seekTimeHandler, isLoggedIn
 }:WaveformProps) => {
   // console.log('curr', currentTime);
   // console.log('dura', duration);
@@ -40,7 +41,7 @@ const Waveform = ({
     items: [],
     minDistance: 7,
     maxDistance: 22,
-    numberOfLines: 40,
+    numberOfLines: isLoggedIn ? 60 : 40,
     lineHeight: 50,
     lineSpacing: 4,
     lineWidth: 2,
@@ -82,14 +83,27 @@ const Waveform = ({
   };
   const trip = trap();
   return (
-    <ProgressBarContainer>
-      <TotalProgressBar onClick={() => handleClick} ref={svgRef}>
+    isLoggedIn ? 
+    (
+      <ProgressBarContainerLoggedIn >
+      <TotalProgressBarLoggedIn onClick={handleClick} ref={svgRef} >
+        {trip.node1}
+      </TotalProgressBarLoggedIn>
+      <CurrentProgressBarLoggedIn currTime={currentTime} duration={duration} onClick={handleClick} >
+        {trip.node2}
+      </CurrentProgressBarLoggedIn>
+    </ProgressBarContainerLoggedIn>
+      ):(
+        <ProgressBarContainer >
+      <TotalProgressBar onClick={handleClick} ref={svgRef} >
         {trip.node1}
       </TotalProgressBar>
-      <CurrentProgressBar currTime={currentTime} duration={duration} onClick={() => handleClick}>
+      <CurrentProgressBar currTime={currentTime} duration={duration} onClick={handleClick} >
         {trip.node2}
       </CurrentProgressBar>
     </ProgressBarContainer>
+      )
+    
   );
 };
 

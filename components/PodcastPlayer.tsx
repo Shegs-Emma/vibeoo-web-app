@@ -1,13 +1,12 @@
 import {
-  useState, useRef, useEffect, ReactEventHandler, SyntheticEvent, ChangeEvent,
+  useState, useRef, useEffect, SyntheticEvent, ChangeEvent,
 } from 'react';
-import IconButton from '@material-ui/core/IconButton';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import Waveform from './Waveform';
 import {
-  AudioPlayerContainer, ProgressBarSection, StyledIconButton, PlayerTimeContainer, StyledDuration,
-  StyledCurrentTime, StyledDivider, StyledVolumeContainer, StyledVolumeControl,
+  AudioPlayerContainer, AudioPlayerContainerLoggedIn, ProgressBarSection, StyledIconButton, PlayerTimeContainer, PlayerTimeContainerLoggedIn, StyledDuration,
+  StyledCurrentTime, StyledDivider, StyledVolumeContainer, StyledVolumeControl, PlayerTimeWaveformContainer
 } from '../styles/PodcastPlayer.styled';
 
 interface PodcastPlayerProps {
@@ -16,21 +15,49 @@ interface PodcastPlayerProps {
   podcastTitle: string,
   podcastNaration: string,
   podcastAudioUrl: string
-  }
+  },
+  isLoggedIn?: boolean
 }
 
-const PodcastPlayer = ({ podcastData }:PodcastPlayerProps) => {
-  const { podcastAudioUrl } = podcastData;
-  const [waveData] = useState(Array(40).fill(6).map(() => Math.random()));
-  const [isPlaying, setPlaying] = useState(true);
+const usePrevious = (value:string) => {
+  const ref = useRef<string>();
+  useEffect(() => {
+    ref.current = value;
+  })
+  return ref.current;
+}
+
+const PodcastPlayer = ({ podcastData, isLoggedIn }:PodcastPlayerProps) => {
+  const {
+    podcastAudioUrl,
+  } = podcastData;
+  const [waveData, setWaveData] = useState(Array(isLoggedIn ? 60 : 40).fill(6).map(() => Math.random()));
+  const [isPlaying, setPlaying] = useState(!isLoggedIn);
   const [currentTime, setCurrentTime] = useState('--:--');
   const [durationTime, setDurationTime] = useState('--:--');
+  const [firsty, setFirsty] = useState(true);
   const [seekTime, setSeekTime] = useState(0);
   const [volume, setVolume] = useState(0.4);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const previousAudio = usePrevious(podcastAudioUrl);
   useEffect(() => {
     if (audioRef.current) audioRef.current.currentTime = seekTime;
   }, [seekTime]);
+  useEffect(() => {
+    if (podcastAudioUrl) {
+      setWaveData(Array(isLoggedIn ? 60 : 40).fill(6).map(() => Math.random()));
+      if(!firsty){
+            audioRef.current?.play();
+        setPlaying(true);
+      }
+      setFirsty(false);
+      // if(previousAudio) {
+      //     audioRef.current?.play();
+      //   setPlaying(true);
+      // }
+      
+    }
+  }, [podcastAudioUrl]);
   const handlePlay = () => {
     if (isPlaying) {
       audioRef.current?.pause();
@@ -87,57 +114,100 @@ const PodcastPlayer = ({ podcastData }:PodcastPlayerProps) => {
   };
 
   return (
-    <>
-      <AudioPlayerContainer>
-        <audio
-          src={podcastAudioUrl}
-          preload="auto"
-          autoPlay
-          ref={audioRef}
-          onLoadedMetadata={onLoadedMetadataHandler}
-          onTimeUpdate={onTimeUpdateHandler}
-          onPlay={onPlayHandler}
-          onVolumeChange={onVolumeChangeHandler}
-          onEnded={onEndedHandler}
-        />
-        <ProgressBarSection>
-          <StyledIconButton
-            color="inherit"
-            aria-label="play-pause-toggle-button"
-            onClick={() => handlePlay()}
-          >
-            {
+    isLoggedIn ?
+    (
+      <AudioPlayerContainerLoggedIn >
+      <audio
+        src={podcastAudioUrl}
+        preload="auto"
+        ref={audioRef}
+        onLoadedMetadata={onLoadedMetadataHandler}
+        onTimeUpdate={onTimeUpdateHandler}
+        onPlay={onPlayHandler}
+        onVolumeChange={onVolumeChangeHandler}
+        onEnded={onEndedHandler}
+      />
+      <StyledIconButton
+                  color="inherit"
+                  aria-label="play-pause-toggle-button"
+                  onClick={() => handlePlay()}
+                >
+                  {
               isPlaying
                 ? (<PauseCircleOutlineIcon />)
                 : (<PlayCircleOutlineIcon />)
             }
-          </StyledIconButton>
-          <Waveform
-            currentTime={audioRef.current?.currentTime}
-            duration={audioRef.current?.duration}
-            waveFormData={waveData}
-            seekTimeHandler={setSeekTime}
-          />
-        </ProgressBarSection>
-        <PlayerTimeContainer>
-          <StyledCurrentTime>{currentTime}</StyledCurrentTime>
-          <StyledDivider>|</StyledDivider>
-          <StyledDuration>{durationTime}</StyledDuration>
-        </PlayerTimeContainer>
-        <StyledVolumeContainer>
-          <StyledVolumeControl
-            type="range"
-            min={0}
-            max={1}
-            step={0.1}
-            value={volume}
-            onChange={changeAudioVolume}
-          />
-        </StyledVolumeContainer>
-
+                </StyledIconButton>
+                <PlayerTimeWaveformContainer>
+                <PlayerTimeContainerLoggedIn>
+                  <StyledCurrentTime>{currentTime}</StyledCurrentTime>
+                  <StyledDivider>|</StyledDivider>
+                  <StyledDuration>{durationTime}</StyledDuration>
+                </PlayerTimeContainerLoggedIn>
+                <Waveform
+                  isLoggedIn
+                  currentTime={audioRef.current?.currentTime}
+                  duration={audioRef.current?.duration}
+                  waveFormData={waveData}
+                  seekTimeHandler={setSeekTime}
+                />
+                </PlayerTimeWaveformContainer>
+      </AudioPlayerContainerLoggedIn>
+      ):(
+      <AudioPlayerContainer >
+      <audio
+        src={podcastAudioUrl}
+        preload="auto"
+        autoPlay
+        ref={audioRef}
+        onLoadedMetadata={onLoadedMetadataHandler}
+        onTimeUpdate={onTimeUpdateHandler}
+        onPlay={onPlayHandler}
+        onVolumeChange={onVolumeChangeHandler}
+        onEnded={onEndedHandler}
+      />
+       <ProgressBarSection>
+                  <StyledIconButton
+                    color="inherit"
+                    aria-label="play-pause-toggle-button"
+                    onClick={() => handlePlay()}
+                  >
+                    {
+              isPlaying
+                ? (<PauseCircleOutlineIcon />)
+                : (<PlayCircleOutlineIcon />)
+            }
+                  </StyledIconButton>
+                  <Waveform
+                    currentTime={audioRef.current?.currentTime}
+                    duration={audioRef.current?.duration}
+                    waveFormData={waveData}
+                    seekTimeHandler={setSeekTime}
+                  />
+                </ProgressBarSection>
+                <PlayerTimeContainer>
+                  <StyledCurrentTime>{currentTime}</StyledCurrentTime>
+                  <StyledDivider>|</StyledDivider>
+                  <StyledDuration>{durationTime}</StyledDuration>
+                </PlayerTimeContainer>
+                <StyledVolumeContainer>
+                  <StyledVolumeControl
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.1}
+                    value={volume}
+                    onChange={changeAudioVolume}
+                  />
+                </StyledVolumeContainer>
       </AudioPlayerContainer>
-    </>
+      )
+
   );
+};
+
+PodcastPlayer.defaultProps = {
+  isLoggedIn: false,
 };
 
 export default PodcastPlayer;

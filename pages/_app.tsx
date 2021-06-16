@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Provider store={reduxStore}>
           <AuthProvider session={pageProps.session}>
             <Component {...pageProps} />
-            {/* <LoggedInPodcastPlayer /> */}
+            <LoggedInPodcastPlayer />
           </AuthProvider>
         </Provider>
       </StylesProvider>

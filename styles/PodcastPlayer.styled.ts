@@ -3,10 +3,16 @@ import Slider from '@material-ui/core/Slider';
 import IconButton from '@material-ui/core/IconButton';
 import styled from 'styled-components';
 
+
 const AudioPlayerContainer = styled.div`
     /* border: 1px solid green; */
     padding-left: .45rem;
-    /* margin: 0 2rem; */
+`;
+const AudioPlayerContainerLoggedIn = styled.div`
+    padding-left: .45rem;
+    display: flex;
+    // border: 1px solid white;
+    flex-basis: 69%;
 `;
 
 const ProgressBarSection = styled.div`
@@ -30,6 +36,12 @@ const PlayerTimeContainer = styled.div`
     width: 77%;
     display: flex;
     justify-content: center;
+    margin: auto 0;
+`;
+const PlayerTimeContainerLoggedIn = styled.div`
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: center;
 `;
 
 const StyledDuration = styled(Typography)``;
@@ -37,8 +49,9 @@ const StyledCurrentTime = styled(Typography)``;
 const StyledDivider = styled(Typography)`
     margin: 0 .43rem;
 `;
-const StyledVolumeContainer = styled.div`
+const StyledVolumeContainer = styled.div<{isLoggedIn?: boolean}>`
     width: 77%;
+    margin: auto 0;
 `;
 const StyledVolumeControl = styled(Slider)<{type: 'range'}>`
     & .MuiSlider-rail {
@@ -55,7 +68,13 @@ const StyledVolumeControl = styled(Slider)<{type: 'range'}>`
     }
 `;
 
+const PlayerTimeWaveformContainer = styled.div`
+    // border: 1px solid red;
+    width: 100%;
+    padding-top: 1.42rem;
+`;
+
 export {
-  AudioPlayerContainer, ProgressBarSection, StyledIconButton, PlayerTimeContainer,
-  StyledDuration, StyledCurrentTime, StyledDivider, StyledVolumeContainer, StyledVolumeControl,
+  AudioPlayerContainer, AudioPlayerContainerLoggedIn, ProgressBarSection, StyledIconButton, PlayerTimeContainer, PlayerTimeContainerLoggedIn,
+  StyledDuration, StyledCurrentTime, StyledDivider, StyledVolumeContainer, StyledVolumeControl, PlayerTimeWaveformContainer
 };
