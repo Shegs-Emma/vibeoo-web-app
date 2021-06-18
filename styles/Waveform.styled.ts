@@ -8,6 +8,7 @@ interface CurrentProgressBarProps {
 const generalProgressBar = (isLoggedIn:boolean = false) =>`
     position: absolute;
     height: ${isLoggedIn ? '41%' : '16%'};
+    // border: 1px solid red;
 `;
 
 const ProgressBarContainer = styled.div`
@@ -29,9 +30,10 @@ const CurrentProgressBar = styled.svg.attrs<CurrentProgressBarProps>((props) => 
     
 `;
 const ProgressBarContainerLoggedIn = styled.div`
-    width: 100%;
+    width: 90%;
     padding-top: .25rem;
     margin: .53rem 0 2rem .5rem;
+    // border: 1px solid green;
 `;
 
 const TotalProgressBarLoggedIn = styled.svg`

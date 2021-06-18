@@ -42,6 +42,7 @@ const PlayerTimeContainerLoggedIn = styled.div`
     /* border: 1px solid blue; */
     display: flex;
     justify-content: center;
+    align-items: center;
 `;
 
 const StyledDuration = styled(Typography)``;
@@ -72,6 +73,10 @@ const PlayerTimeWaveformContainer = styled.div`
     // border: 1px solid red;
     width: 100%;
     padding-top: 1.42rem;
+    @media(min-width:800px){
+        display: flex;
+        flex-flow: row-reverse nowrap;
+    }
 `;
 
 export {

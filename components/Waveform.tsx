@@ -41,7 +41,7 @@ const Waveform = ({
     items: [],
     minDistance: 7,
     maxDistance: 22,
-    numberOfLines: isLoggedIn ? 60 : 40,
+    numberOfLines: isLoggedIn ? 160 : 40,
     lineHeight: 50,
     lineSpacing: 4,
     lineWidth: 2,

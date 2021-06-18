@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/client';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import stringTruncate from '../utils/string-truncate';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
+import PlayerPlaylist from './PlayerPlaylist';
 import {
   LoggedInPlayerPlaylistContainer, LoggedInPlayerContainer, LoggedInPlayerControlContainer, PlaylistPlayIconButton, PlayerEpisodeImg, PlaylistIconPlayerImgContainer,
   PlayerEpisodeDesc,
@@ -25,7 +26,7 @@ const LoggedInPodcastPlayer = () => {
       <>
       <LoggedInPlayerContainer>
       <LoggedInPlayerPlaylistContainer showPlaylist={showPlaylist}>
-          <span>Hello world</span>
+          <PlayerPlaylist />
       </LoggedInPlayerPlaylistContainer>
       <LoggedInPlayerControlContainer>
       <PlaylistIconPlayerImgContainer>

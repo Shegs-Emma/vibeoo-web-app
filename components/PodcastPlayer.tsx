@@ -31,7 +31,7 @@ const PodcastPlayer = ({ podcastData, isLoggedIn }:PodcastPlayerProps) => {
   const {
     podcastAudioUrl,
   } = podcastData;
-  const [waveData, setWaveData] = useState(Array(isLoggedIn ? 60 : 40).fill(6).map(() => Math.random()));
+  const [waveData, setWaveData] = useState(Array(isLoggedIn ? 160 : 40).fill(6).map(() => Math.random()));
   const [isPlaying, setPlaying] = useState(!isLoggedIn);
   const [currentTime, setCurrentTime] = useState('--:--');
   const [durationTime, setDurationTime] = useState('--:--');
@@ -45,7 +45,7 @@ const PodcastPlayer = ({ podcastData, isLoggedIn }:PodcastPlayerProps) => {
   }, [seekTime]);
   useEffect(() => {
     if (podcastAudioUrl) {
-      setWaveData(Array(isLoggedIn ? 60 : 40).fill(6).map(() => Math.random()));
+      setWaveData(Array(isLoggedIn ? 160 : 40).fill(6).map(() => Math.random()));
       if(!firsty){
             audioRef.current?.play();
         setPlaying(true);
