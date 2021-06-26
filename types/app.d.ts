@@ -24,7 +24,7 @@ interface IEpisode extends Document {
   showSlug: string;
 }
 
-inteface EpisodeProps{
+interface EpisodeProps{
   _id: string;
   episodeTitle: string;
   episodeDescription: string;
