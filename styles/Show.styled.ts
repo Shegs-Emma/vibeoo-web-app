@@ -36,6 +36,8 @@ const ShowImageContainer = styled.div`
 `;
 const ShowDescContainer = styled.div`
   padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
 `;
 const ShowTitle = styled(Typography)`
   font-size: 2.35rem;

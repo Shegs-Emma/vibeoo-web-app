@@ -4,7 +4,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['vibeoo-uploads.s3.amazonaws.com'],
+    domains: ['vibeoo-store.s3.eu-west-2.amazonaws.com'],
   },
   webpack(config, options) {
     const { dev, isServer } = options;

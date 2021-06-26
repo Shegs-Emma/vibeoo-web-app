@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const appUrl = process.env.NODE_ENV === 'production' ? 'https://vibeoo.vercel.app' : 'http://localhost:3000'
 // console.log(process.env);
 type userData = {
     username?: string,
@@ -62,7 +63,7 @@ const signupViaEmail = async ({ email, token }:userData) => {
 };
 
 const fetchUserFromDb = async (userId: String) => {
-  console.log(userId);
+  //console.log(userId);
   const response = await axios({
     method: 'GET',
     url: `${process.env.NEXTAUTH_URL}/api/user/get-user/${userId}`,
@@ -96,6 +97,34 @@ const saveFbUser = async (fbProfile: userFbData) => {
   return response.data;
 };
 
+const getUserPlaylist = async () => {
+  const response = await axios.get(`${appUrl}/api/user/management/playlist`)
+  return response.data;
+}
+
+const addToUserPlaylist = async (episodeUpdateInfo:{userId: string, episodeId: string}) => {
+  const response = await axios({
+    method: 'POST',
+    url: `${appUrl}/api/user/management/playlist`,
+    data: {
+      ...episodeUpdateInfo,
+    },
+  })
+  return response.data;
+}
+
+const removeFromUserPlaylist= async (episodeUpdateInfo:{userId: string, episodeId: string}) => {
+  console.log("him")
+  const response = await axios({
+    method: 'DELETE',
+    url: `${appUrl}/api/user/management/playlist`,
+    data: {
+      ...episodeUpdateInfo,
+    },
+  })
+  return response.data;
+}
+
 export {
-  loginUser, registerPendingUser, signupViaEmail, fetchUserFromDb, saveGoogleUser, saveFbUser,
+  loginUser, registerPendingUser, signupViaEmail, fetchUserFromDb, saveGoogleUser, saveFbUser, getUserPlaylist, addToUserPlaylist, removeFromUserPlaylist
 };

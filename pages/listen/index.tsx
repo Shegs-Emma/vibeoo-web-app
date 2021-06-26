@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Divider from '@material-ui/core/Divider';
 import { useState } from 'react';
+import { getShowCategories } from '../../lib/api/show-api-helpers';
 import AppLayout from '../../components/Layout';
 import ExploreDropdown from '../../components/DropdownMenu';
 import ExploreNavLinkLg from '../../components/ExploreNavLinkLg';
@@ -18,9 +19,14 @@ const DynamicExploreRecommendation = dynamic(
   { ssr: false },
 );
 
-const ListenHome = () => {
+interface ListenHomeProps {
+  showCategories: Array<string>
+}
+
+const ListenHome = ({showCategories}:ListenHomeProps) => {
+// console.log(showCategories)
   const router = useRouter();
-  const [rectTitle, setRectTitle] = useState('All');
+  const [rectTitle, setRectTitle] = useState('all');
   // console.log(router);
   return (
     <AppLayout>
@@ -48,7 +54,7 @@ const ListenHome = () => {
         </BannerContainer>
         <ExploreNavigationContainer>
           <ExploreDropdown usagePage="listen-in-index" setRectTitle={setRectTitle} />
-          <ExploreNavLinkLg exploreIndex setRectTitle={setRectTitle} />
+          <ExploreNavLinkLg exploreUrlNames={showCategories} exploreIndex setRectTitle={setRectTitle} />
         </ExploreNavigationContainer>
         <ExploreRecommendationContainer>
           <ExploreRecommendationTitle>
@@ -58,9 +64,7 @@ const ListenHome = () => {
             {' '}
             )
           </ExploreRecommendationTitle>
-          <DynamicExploreRecommendation>
-            <EpisodeItems />
-          </DynamicExploreRecommendation>
+
         </ExploreRecommendationContainer>
         <Divider />
       </ListenIndexContainer>
@@ -68,4 +72,20 @@ const ListenHome = () => {
   );
 };
 
+export const getStaticProps = async () => {
+  const res = await getShowCategories();
+
+  return {
+    props: {
+      showCategories: res,
+    },
+    revalidate: 10,
+  }
+};
+
+
 export default ListenHome;
+
+// <DynamicExploreRecommendation>
+//             <EpisodeItems />
+//           </DynamicExploreRecommendation>

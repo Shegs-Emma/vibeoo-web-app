@@ -13,7 +13,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { showModalDialog } from '../redux/modal/modalSlice';
 import { useAppDispatch } from '../redux/hooks';
-import { getExploreUrlName } from '../utils/app-path';
+import { getExploreUrlName } from '../lib/utils/app-path';
 
 import {
   StyledDrawer, StyledSideDrawer, CloseIconContainer, SidenavDropdownMenu, SidenavDropdownLink,

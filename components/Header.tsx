@@ -17,7 +17,7 @@ import {
   UserProfileDropdown, UserAvatar,
 } from '../styles/Header.styled';
 import SideNav from './SideNav';
-import { getExploreUrlName } from '../utils/app-path';
+import { getExploreUrlName } from '../lib/utils/app-path';
 import { showModalDialog } from '../redux/modal/modalSlice';
 import { ExploreDropdownLink } from '../styles/DropdownMenu.styled';
 import { ButtonWithIcon } from '../styles/Global.styled';
@@ -33,8 +33,8 @@ const AppHeader = () => {
   useEffect(() => {
     setDropdownStatus(false);
   }, [router.query.explore]);
-  console.log('head-sess', session);
-  console.log('head-load', loading);
+  // console.log('head-sess', session);
+  // console.log('head-load', loading);
   return (
     <StyledAppBar position="static" color="secondary">
       <StyledToolBar>

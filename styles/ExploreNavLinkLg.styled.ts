@@ -11,6 +11,9 @@ const activePage = () => (
 const ExploreNavigationLg = styled.div`
     margin-top: 1.16rem;
     /* border: 1px solid yellow; */
+    & > a {
+      text-transform: capitalize;
+    }
     @media(max-width:942px){
         display: none;
     }

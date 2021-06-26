@@ -1,21 +1,22 @@
 import { useState, Dispatch } from 'react';
 import NextLink from 'next/link';
 import { ExploreNavigationLg, ExploreNavLgLink } from '../styles/ExploreNavLinkLg.styled';
-import { getExploreUrlName } from '../utils/app-path';
+import { getExploreUrlName } from '../lib/utils/app-path';
 
 type Props = {
   currentContent?: string;
   exploreIndex?: boolean;
+  exploreUrlNames: Array<string>;
   setRectTitle?: Dispatch<string>;
 }
 
-const ExploreNavLinkLg = ({ currentContent, exploreIndex, setRectTitle }:Props) => {
-  const [indexPageCurrContent, setIndexPageCurrContent] = useState('All');
+const ExploreNavLinkLg = ({ exploreUrlNames, currentContent, exploreIndex, setRectTitle }:Props) => {
+  const [indexPageCurrContent, setIndexPageCurrContent] = useState('all');
   return (
     <ExploreNavigationLg>
       {
         exploreIndex
-          ? getExploreUrlName().map((path, idx) => (
+          ? exploreUrlNames.map((path, idx) => (
             <ExploreNavLgLink
               key={idx}
               isActiveContent={indexPageCurrContent === path}
@@ -24,17 +25,17 @@ const ExploreNavLinkLg = ({ currentContent, exploreIndex, setRectTitle }:Props) 
                 if (setRectTitle) setRectTitle(path);
               }}
             >
-              { path }
+              { `${path[0].toUpperCase()}${path.substr(1)}` }
             </ExploreNavLgLink>
           ))
-          : getExploreUrlName().map((path, idx) => (
+          : exploreUrlNames.map((path, idx) => (
             <NextLink
               key={idx}
-              href={path === 'All' ? '/listen/' : `/listen/${path.toLowerCase()}`}
+              href={path === 'all' ? '/listen/' : `/listen/${path.toLowerCase()}`}
               passHref
             >
               <ExploreNavLgLink isActiveContent={currentContent === path}>
-                { path }
+                { `${path[0].toUpperCase()}${path.substr(1)}` }
               </ExploreNavLgLink>
             </NextLink>
           ))

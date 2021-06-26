@@ -1,4 +1,5 @@
 import IconButton from '@material-ui/core/IconButton';
+import CustomLink from '../components/CustomLink';
 import styled from 'styled-components';
 
 const LoggedInPlayerPlaylistContainer = styled.div<{showPlaylist:boolean}>`
@@ -70,4 +71,11 @@ const PlayerEpisodeDesc = styled.div`
     }
 `;
 
-export { LoggedInPlayerPlaylistContainer, LoggedInPlayerContainer, LoggedInPlayerControlContainer, PlaylistPlayIconButton, PlayerEpisodeImg, PlaylistIconPlayerImgContainer, PlayerEpisodeDesc };
+const LoggedInPlayerEpisodeLink = styled(CustomLink)`
+    border: 1px solid blue;
+    display: block;
+`
+
+export { LoggedInPlayerPlaylistContainer, LoggedInPlayerContainer, 
+    LoggedInPlayerControlContainer, PlaylistPlayIconButton, PlayerEpisodeImg, 
+    PlaylistIconPlayerImgContainer, PlayerEpisodeDesc, LoggedInPlayerEpisodeLink };

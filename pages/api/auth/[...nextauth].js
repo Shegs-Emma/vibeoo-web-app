@@ -13,21 +13,6 @@ const options = {
         return { id: credentials.id, email: credentials.email };
       },
     }),
-    Providers.Email({
-      server: {
-        port: 465,
-        host: 'smtp.gmail.com',
-        secure: true,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD,
-        },
-        tls: {
-          rejectUnauthorized: false,
-        },
-      },
-      from: process.env.NEXTAUTH_EMAIL_FROM,
-    }),
     Providers.Facebook({
       clientId: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
@@ -41,12 +26,17 @@ const options = {
       clientSecret: '',
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     jwt: true,
     maxAge: 24 * 60 * 60,
   },
   jwt: {
-    secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
+    secret: process.env.JWT_SECRET,
+    signingKey: process.env.JWT_SIGNING_KEY,
+    encryption: true,
+    encryptionKey: process.env.JWT_ENCRYPTION_KEY,
+    decryptionKey: process.env.JWT_ENCRYPTION_KEY
   },
   callbacks: {
     signIn: async (user, account, profile) => {

@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import { useSession } from 'next-auth/client';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import stringTruncate from '../utils/string-truncate';
+import stringTruncate from '../lib/utils/string-truncate';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import PlayerPlaylist from './PlayerPlaylist';
 import {
-  LoggedInPlayerPlaylistContainer, LoggedInPlayerContainer, LoggedInPlayerControlContainer, PlaylistPlayIconButton, PlayerEpisodeImg, PlaylistIconPlayerImgContainer,
-  PlayerEpisodeDesc,
+  LoggedInPlayerPlaylistContainer, LoggedInPlayerContainer, LoggedInPlayerControlContainer, 
+  PlaylistPlayIconButton, PlayerEpisodeImg, PlaylistIconPlayerImgContainer,
+  PlayerEpisodeDesc,LoggedInPlayerEpisodeLink
 } from '../styles/LoggedInPodcastPlayer.styled';
 import PodcastPlayer from './PodcastPlayer';
 
@@ -26,26 +28,30 @@ const LoggedInPodcastPlayer = () => {
       <>
       <LoggedInPlayerContainer>
       <LoggedInPlayerPlaylistContainer showPlaylist={showPlaylist}>
-          <PlayerPlaylist />
+          <PlayerPlaylist playlist={session.user.playlist}/>
       </LoggedInPlayerPlaylistContainer>
       <LoggedInPlayerControlContainer>
       <PlaylistIconPlayerImgContainer>
       <PlaylistPlayIconButton onClick={() => setShowPlaylist(!showPlaylist)}>
           <PlaylistPlayIcon />
       </PlaylistPlayIconButton>
-        <PlayerEpisodeImg>
+      <PlayerEpisodeImg>
+      <NextLink href={`/show/${podcastPlayerState.showSlug}`} passHref>
+      <LoggedInPlayerEpisodeLink>
           <Image
-            src={podcastPlayerState.podcastImageUrl}
+            src={podcastPlayerState.episodeLogo}
             alt="Episode art"
             width={25}
             height={25}
             layout="responsive"
           />
+        </LoggedInPlayerEpisodeLink>
+        </NextLink>
         </PlayerEpisodeImg>
         </PlaylistIconPlayerImgContainer>
         <PlayerEpisodeDesc>
-          <p>{stringTruncate(podcastPlayerState.podcastTitle)}</p>
-          <span>{stringTruncate(podcastPlayerState.podcastNaration)}</span>
+          <p>{stringTruncate(podcastPlayerState.episodeTitle)}</p>
+          <span>{stringTruncate(podcastPlayerState.episodeDescription)}</span>
         </PlayerEpisodeDesc>
         <DynamicPodcastPlayer podcastData={podcastPlayerState} isLoggedIn />
         </LoggedInPlayerControlContainer>

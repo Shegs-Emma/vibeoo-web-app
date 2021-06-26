@@ -6,7 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Link from '@material-ui/core/Link';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { ExploreDropdownBtn, ExploreDropdownMenu, ExploreDropdownLink } from '../styles/DropdownMenu.styled';
-import { getExploreUrlName } from '../utils/app-path';
+import { getExploreUrlName } from '../lib/utils/app-path';
 
 type Props = {
   currentContent?: string | string[];

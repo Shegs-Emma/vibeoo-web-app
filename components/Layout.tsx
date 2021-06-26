@@ -1,4 +1,5 @@
 import { useEffect, ReactElement } from 'react';
+import { useSession } from 'next-auth/client';
 import { useAppDispatch } from '../redux/hooks';
 import { setPodcastPlayerData } from '../redux/player/playerSlice';
 import awsData from '../data';
@@ -11,10 +12,12 @@ interface AppLayoutProps {
 }
 
 const AppLayout = ({ children }:AppLayoutProps) => {
+  const [session, loading] = useSession();
+  console.log('se',session);
 	const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(setPodcastPlayerData(awsData[0]));
-  }, []);
+    if(session) dispatch(setPodcastPlayerData(session.user.lastPlayed));
+  }, [session]);
 	return(
   <>
     <AppHeader />

@@ -1,14 +1,7 @@
 import { Schema, model, Document, Model } from 'mongoose';
+import { IUser } from '../../../types/app.d';
 
-interface IUser extends Document {
-  username: String;
-  googleId?: String;
-  twitterId?: String;
-  facebookId?: String;
-  email: String;
-  signupMethod: String;
-  profilePicture: String;
-}
+
 
 const userSchema: Schema<IUser> = new Schema({
   username: { type: String, required: true },
@@ -18,7 +11,9 @@ const userSchema: Schema<IUser> = new Schema({
   email: { type: String, default: '' },
   signupMethod: { type: String, required: true },
   profilePicture: { type: String, default: '' },
-});
+  showsFollowing: [String],
+  playlist: [{ type: Schema.Types.ObjectId, ref: 'episode' }]
+}, { timestamps: true } );
 
 // eslint-disable-next-line import/no-mutable-exports
 let User: Model<IUser>;

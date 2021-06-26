@@ -1,24 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { EpisodeProps } from '../../types/app.d';
 
-type PodcastPlayerState = {
-  podcastImageUrl: string,
-  podcastTitle: string,
-  podcastNaration: string,
-  podcastAudioUrl: string
-}
-
-const initialState: PodcastPlayerState = {
-  podcastImageUrl: '',
-  podcastTitle: '',
-  podcastNaration: '',
-  podcastAudioUrl: '',
+const initialState: EpisodeProps = {
+  episodeLogo: '',
+  episodeTitle: '',
+  episodeDescription: '',
+  episodeAudioUrl: '',
+  showSlug: ''
 };
 
 export const podcastPlayerSlice = createSlice({
   name: 'podcastPlayerState',
   initialState,
   reducers: {
-    setPodcastPlayerData: (state, action: PayloadAction<PodcastPlayerState>) => action.payload,
+    setPodcastPlayerData: (state, action: PayloadAction<EpisodeProps>) => action.payload,
   },
 });
 

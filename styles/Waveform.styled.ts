@@ -7,7 +7,7 @@ interface CurrentProgressBarProps {
 
 const generalProgressBar = (isLoggedIn:boolean = false) =>`
     position: absolute;
-    height: ${isLoggedIn ? '41%' : '16%'};
+    height: ${isLoggedIn ? 'fit-content' : '16%'};
     // border: 1px solid red;
 `;
 

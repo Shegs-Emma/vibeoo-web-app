@@ -1,14 +1,20 @@
 import { EpisodeItemsContainer } from '../styles/EpisodeItems.styled';
 import EpisodeItem from './EpisodeItem';
 import awsData from '../data';
+import { EpisodeProps } from '../types/app.d';
 
-const EpisodeItems = () => {
+interface EpisodeItemsProps {
+  episodes: Array<EpisodeProps>;
+}
+
+const EpisodeItems = ({ episodes }: EpisodeItemsProps) => {
+  // console.log('epi',episodes)
   const ant = '';
   return (
     <EpisodeItemsContainer>
       {
-        awsData.map(({ podcastId, ...otherProps }) => (
-          <EpisodeItem key={podcastId} podcastData={otherProps} />
+        episodes.map( episodeData => (
+          <EpisodeItem key={episodeData._id} podcastData={episodeData} />
         ))
       }
     </EpisodeItemsContainer>

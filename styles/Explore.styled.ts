@@ -94,8 +94,11 @@ const RecommendationDropdownLink = styled(GlobalDropdownLink)`
      ${(props) => (props.isActiveContent ? activePage() : '')}
 `;
 
+const ExploreEpisodesContainer = styled.div``;
+
 export {
   BannerContainer, BannerImgContainer, BannerText, ExploreNavigationContainer,
   ExploreRecommendationContainer, ExploreRecommendationTitle, ListenIndexContainer,
-  RecommendationDropdownBtn, RecommendationDropdownMenu, RecommendationDropdownLink,
+  RecommendationDropdownBtn, RecommendationDropdownMenu, RecommendationDropdownLink, 
+  ExploreEpisodesContainer
 };

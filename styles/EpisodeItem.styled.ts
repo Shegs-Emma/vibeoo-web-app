@@ -1,5 +1,7 @@
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 // import Button from '@material-ui/core/Button';
+import CustomLink from '../components/CustomLink';
 import styled from 'styled-components';
 
 const EpisodeItemContainer = styled.div`
@@ -20,6 +22,7 @@ const EpisodeItemContainer = styled.div`
 
 const EpisodeItemImgContainer = styled.div`
     /* border: 1px solid yellow; */
+    cursor: pointer;
     flex-basis: 33%;
     height: 200px;
 
@@ -64,8 +67,19 @@ const EpisodeItemDetailPlayContainer = styled.div`
     cursor: pointer;
 `;
 
+const EpisodeItemLink = styled(CustomLink)`
+    border: 1px solid green;
+    display: block;
+`
+
+const EpisodeItemAddToPlaylistIconButton = styled(IconButton)`
+    padding: 0;
+    margin-right: .5rem;
+    color: #fff;
+`
+
 export {
   EpisodeItemContainer, EpisodeItemImgContainer, EpisodeItemDescContainer,
   EpisodeItemDetailContainer, EpisodeItemDetailPlayContainer,
-  EpisodeItemTitle, EpisodeItemSummaryText,
+  EpisodeItemTitle, EpisodeItemSummaryText, EpisodeItemLink, EpisodeItemAddToPlaylistIconButton
 };

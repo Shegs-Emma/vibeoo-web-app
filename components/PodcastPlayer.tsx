@@ -4,18 +4,14 @@ import {
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import Waveform from './Waveform';
+import { EpisodeProps } from '../types/app.d';
 import {
   AudioPlayerContainer, AudioPlayerContainerLoggedIn, ProgressBarSection, StyledIconButton, PlayerTimeContainer, PlayerTimeContainerLoggedIn, StyledDuration,
   StyledCurrentTime, StyledDivider, StyledVolumeContainer, StyledVolumeControl, PlayerTimeWaveformContainer
 } from '../styles/PodcastPlayer.styled';
 
 interface PodcastPlayerProps {
-  podcastData: {
-    podcastImageUrl: string,
-  podcastTitle: string,
-  podcastNaration: string,
-  podcastAudioUrl: string
-  },
+  podcastData: EpisodeProps,
   isLoggedIn?: boolean
 }
 
@@ -29,7 +25,7 @@ const usePrevious = (value:string) => {
 
 const PodcastPlayer = ({ podcastData, isLoggedIn }:PodcastPlayerProps) => {
   const {
-    podcastAudioUrl,
+    episodeAudioUrl,
   } = podcastData;
   const [waveData, setWaveData] = useState(Array(isLoggedIn ? 160 : 40).fill(6).map(() => Math.random()));
   const [isPlaying, setPlaying] = useState(!isLoggedIn);
@@ -39,12 +35,12 @@ const PodcastPlayer = ({ podcastData, isLoggedIn }:PodcastPlayerProps) => {
   const [seekTime, setSeekTime] = useState(0);
   const [volume, setVolume] = useState(0.4);
   const audioRef = useRef<HTMLAudioElement>(null);
-  const previousAudio = usePrevious(podcastAudioUrl);
+  const previousAudio = usePrevious(episodeAudioUrl);
   useEffect(() => {
     if (audioRef.current) audioRef.current.currentTime = seekTime;
   }, [seekTime]);
   useEffect(() => {
-    if (podcastAudioUrl) {
+    if (episodeAudioUrl) {
       setWaveData(Array(isLoggedIn ? 160 : 40).fill(6).map(() => Math.random()));
       if(!firsty){
             audioRef.current?.play();
@@ -57,7 +53,7 @@ const PodcastPlayer = ({ podcastData, isLoggedIn }:PodcastPlayerProps) => {
       // }
       
     }
-  }, [podcastAudioUrl]);
+  }, [episodeAudioUrl]);
   const handlePlay = () => {
     if (isPlaying) {
       audioRef.current?.pause();
@@ -118,7 +114,7 @@ const PodcastPlayer = ({ podcastData, isLoggedIn }:PodcastPlayerProps) => {
     (
       <AudioPlayerContainerLoggedIn >
       <audio
-        src={podcastAudioUrl}
+        src={episodeAudioUrl}
         preload="auto"
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadataHandler}
@@ -156,7 +152,7 @@ const PodcastPlayer = ({ podcastData, isLoggedIn }:PodcastPlayerProps) => {
       ):(
       <AudioPlayerContainer >
       <audio
-        src={podcastAudioUrl}
+        src={episodeAudioUrl}
         preload="auto"
         autoPlay
         ref={audioRef}

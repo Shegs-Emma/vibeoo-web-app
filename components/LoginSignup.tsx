@@ -8,7 +8,7 @@ import {
   LoginSignupContainer, LoginSignupTitle, LoginSignupFormContainer, LoginSignupInputField,
   LoginSignupDivider, SocialSignupBtn,
 } from '../styles/LoginSignup.styled';
-import { loginSchema, signupSchema } from '../utils/form/yup-schemas';
+import { loginSchema, signupSchema } from '../lib/utils/form/yup-schemas';
 import { loginUser, registerPendingUser } from '../lib/api/user-api-helpers';
 import requestForSignupConfirmationLink from '../lib/api/mailing-api';
 

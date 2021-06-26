@@ -2,13 +2,16 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { GetStaticPaths } from 'next';
 import Image from 'next/image';
+ import { useQuery  } from 'react-query'
+ import { getShowCategories, getCategoryAllEpisodes } from '../../lib/api/show-api-helpers';
 import MenuItem from '@material-ui/core/MenuItem';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import AppLayout from '../../components/Layout';
+import EpisodeItems from '../../components/EpisodeItems';
 import ExploreDropdown from '../../components/DropdownMenu';
 import {
   BannerContainer, BannerImgContainer, BannerText, ExploreNavigationContainer,
-  RecommendationDropdownBtn, RecommendationDropdownMenu, RecommendationDropdownLink,
+  RecommendationDropdownBtn, RecommendationDropdownMenu, RecommendationDropdownLink, ExploreEpisodesContainer
 } from '../../styles/Explore.styled';
 import { StyledButton } from '../../styles/Global.styled';
 import { HomeBannerSecondaryText } from '../../styles/Home.styled';
@@ -25,6 +28,7 @@ const ListenIn = ({ pageName }:Props) => {
   const [currentRecommendation, setCurrentRecommendation] = useState('All Episodes');
   const [showDropdownDesktop, setDropdownStatusDesktop] = useState(false);
   const [showDropdownMobile, setDropdownStatusMobile] = useState(false);
+  const { isLoading, error, data } = useQuery(`get${pageName}AllEpisodes`,() => getCategoryAllEpisodes(pageName))
 
   // console.log(router);
   return (
@@ -78,37 +82,32 @@ const ListenIn = ({ pageName }:Props) => {
           </RecommendationDropdownMenu>
         </div>
       </BannerContainer>
-      <ExploreNavigationContainer>
-        <RecommendationDropdownBtn
-          aria-controls="recommendation-mobile-dropdown-menu"
-          aria-haspopup="true"
-          variant="contained"
-          endIcon={<ArrowDropDownIcon />}
-          screensize="mobile"
-          onClick={() => setDropdownStatusMobile(!showDropdownMobile)}
-        >
-          {currentRecommendation}
-
-        </RecommendationDropdownBtn>
-        <RecommendationDropdownMenu open={showDropdownMobile}>
-          {
-          recommendations.map((recommendation, idx) => (
-            <MenuItem
-              key={idx}
-              onClick={() => {
-                setCurrentRecommendation(recommendation);
-              }}
-              // isActiveContent={currentRecommendation === recommendation}
-            >
-              { recommendation }
-            </MenuItem>
-          ))
+      <ExploreEpisodesContainer>
+        {
+          !isLoading && !error ? 
+              data.length ?
+           (
+            <EpisodeItems episodes={data}/>
+            ):(
+            <p>No show found for {pageName} category</p>
+            ):(
+            null
+            )
         }
-        </RecommendationDropdownMenu>
-      </ExploreNavigationContainer>
+      </ExploreEpisodesContainer>
     </AppLayout>
   );
 };
+/*
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await getShowCategories();
+  const paths = res.map((category:string) => ({
+    params: { explore: category },
+  }))
+  return { paths, fallback: false }
+};
+*/
+
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: [
     { params: { explore: 'comedy' } },
