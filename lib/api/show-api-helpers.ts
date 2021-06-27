@@ -16,7 +16,7 @@ export const getShowSlugs = async () => {
 export const getCategoryAllEpisodes = async (category:string) => {
 	const response = await axios({
 		method: 'POST',
-		url:`${appUrl}/api/show/categories/all-episodes`,
+		url:'/api/show/categories/all-episodes',
 		data: {categoryName: category.toLowerCase()}
 	})
 	return response.data;
@@ -25,7 +25,7 @@ export const getCategoryAllEpisodes = async (category:string) => {
 export const getShowViaSlug = async (showSlug:string) => {
 	const response = await axios({
 		method: 'POST',
-		url:`${appUrl}/api/show/show-slugs`,
+		url:'/api/show/show-slugs',
 		data: {showSlug: showSlug.toLowerCase()}
 	})
 	console.log('sluugy',response.data)

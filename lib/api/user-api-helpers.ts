@@ -98,14 +98,14 @@ const saveFbUser = async (fbProfile: userFbData) => {
 };
 
 const getUserPlaylist = async () => {
-  const response = await axios.get(`${appUrl}/api/user/management/playlist`)
+  const response = await axios.get('/api/user/management/playlist')
   return response.data;
 }
 
 const addToUserPlaylist = async (episodeUpdateInfo:{userId: string, episodeId: string}) => {
   const response = await axios({
     method: 'POST',
-    url: `${appUrl}/api/user/management/playlist`,
+    url: '/api/user/management/playlist',
     data: {
       ...episodeUpdateInfo,
     },
@@ -117,7 +117,7 @@ const removeFromUserPlaylist= async (episodeUpdateInfo:{userId: string, episodeI
   console.log("him")
   const response = await axios({
     method: 'DELETE',
-    url: `${appUrl}/api/user/management/playlist`,
+    url: '/api/user/management/playlist',
     data: {
       ...episodeUpdateInfo,
     },
