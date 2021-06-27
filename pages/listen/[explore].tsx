@@ -98,15 +98,7 @@ const ListenIn = ({ pageName }:Props) => {
     </AppLayout>
   );
 };
-/*
-export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await getShowCategories();
-  const paths = res.map((category:string) => ({
-    params: { explore: category },
-  }))
-  return { paths, fallback: false }
-};
-*/
+
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: [

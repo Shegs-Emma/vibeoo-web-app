@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { ParsedUrlQuery } from 'querystring';
 import { GetStaticPaths } from 'next';
- import { getShowSlugs, getShowViaSlug } from '../../lib/api/show-api-helpers';
+ import { getShowSlugs, getShowViaSlug } from '../../lib/utils/show/show-helpers';
 import AppLayout from '../../components/Layout';
 import {
   ShowPageContainer,
@@ -26,7 +27,6 @@ interface ShowPageProps {
 }
 
 const ShowPage = ({ showDetails }:ShowPageProps) => {
-  console.log(showDetails);
   const [isFollowing, setFollowing] = useState(false);
   return (
     <AppLayout>
@@ -93,9 +93,13 @@ const ShowPage = ({ showDetails }:ShowPageProps) => {
   );
 };
 
+interface Paramsd extends ParsedUrlQuery {
+    showName: string
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await getShowSlugs();
-  const paths = res.map((slug:string) => ({
+  const data = await getShowSlugs();
+    const paths = data.map((slug:string) => ({
     params: { showName: slug },
   }))
   return { paths, fallback: false }

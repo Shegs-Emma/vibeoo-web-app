@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Divider from '@material-ui/core/Divider';
 import { useState } from 'react';
-import { getShowCategories } from '../../lib/api/show-api-helpers';
+ import { getShowCategories } from '../../lib/utils/show/show-helpers';
 import AppLayout from '../../components/Layout';
 import ExploreDropdown from '../../components/DropdownMenu';
 import ExploreNavLinkLg from '../../components/ExploreNavLinkLg';
