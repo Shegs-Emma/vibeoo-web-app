@@ -7,7 +7,7 @@ import { Show, Episode } from '../../../../lib/database/models';
 import { IUser, EpisodeProps, IEpisode } from '../../../../types/app.d';
 
 interface IEpisodeCategory {
-	_id?: String;
+	_id: String;
 	episodeTitle: String;
 	episodeDescription: String;
 	episodeAudioUrl: String;

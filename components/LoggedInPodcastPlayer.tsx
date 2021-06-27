@@ -28,7 +28,7 @@ const LoggedInPodcastPlayer = () => {
       <>
       <LoggedInPlayerContainer>
       <LoggedInPlayerPlaylistContainer showPlaylist={showPlaylist}>
-          <PlayerPlaylist playlist={session.user.playlist}/>
+          <PlayerPlaylist />
       </LoggedInPlayerPlaylistContainer>
       <LoggedInPlayerControlContainer>
       <PlaylistIconPlayerImgContainer>

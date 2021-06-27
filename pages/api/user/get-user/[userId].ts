@@ -3,15 +3,15 @@ import nc from 'next-connect';
 import _ from 'lodash';
 import dbConnect from '../../../../lib/database/db-connect';
 import { User, Episode } from '../../../../lib/database/models';
-import { IUser, EpisodeProps } from '../../../../types/app.d';
+import { IUser, EpisodeProps, IEpisode } from '../../../../types/app.d';
 
 interface IGetUser {
 	email: String;
 	profilePicture: String;
 	showsFollowing: Array<String>;
-	playlist: Array<EpisodeProps>;
+	playlist: Array<String>;
 	username: String;
-	lastPlayed?: EpisodeProps;
+	lastPlayed?: IEpisode | null;
 }
 
 const getUserHandler = nc<NextApiRequest, NextApiResponse>();

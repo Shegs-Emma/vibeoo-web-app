@@ -43,6 +43,7 @@ const PlaylistTrackNarration = styled(Typography)`
 
 const PlaylistTrackDelete = styled.div`
 	// border: 1px solid blue;
+	cursor: pointer;
 `;
 
 

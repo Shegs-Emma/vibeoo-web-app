@@ -2,11 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { EpisodeProps } from '../../types/app.d';
 
 const initialState: EpisodeProps = {
+  _id: '',
   episodeLogo: '',
   episodeTitle: '',
   episodeDescription: '',
   episodeAudioUrl: '',
-  showSlug: ''
+  episodeSlug: '',
+  showSlug: '',
+  isInUserPlaylist: false
 };
 
 export const podcastPlayerSlice = createSlice({

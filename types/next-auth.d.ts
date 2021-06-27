@@ -16,7 +16,7 @@ declare module 'next-auth' {
       /** The user's last played podcast. */
       lastPlayed: EpisodeProps,
       /** The user's playlist. */
-      playlist: Array<EpisodeProps>,
+      playlist: Array<string>,
     }
   }
 }

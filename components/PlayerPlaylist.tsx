@@ -15,31 +15,30 @@ interface PlayerPlaylistProps {
 	playlist: Array<EpisodeProps>
 }
 
-const PlayerPlaylist = ({ playlist }:PlayerPlaylistProps) => {
+const PlayerPlaylist = () => {
 	const [session, loading] = useSession();
 	 const { isLoading, error, data} = useQuery<Array<EpisodeProps>>(`getUserPlaylist`, getUserPlaylist);
 	 const removeFromPlaylistMutation = useMutation((episodeUpdateData:{episodeId: string, userId: string}) => removeFromUserPlaylist(episodeUpdateData))
 	const dispatch = useAppDispatch();
 	const isPlaying = false;
-	return (
-			!playlist.length ?
-			(<p>Playlist Empty</p>
-			):(
+	if(isLoading) return <p>Playlist Empty</p>;
+	if(!isLoading && data){
+		if(data.length){
+			return (
 				<>
-			{
-				!isLoading && !error ?
-			data?.map(({ _id, ...otherEpisodeData}) => (
-				<PlaylistTrack key={_id}>
+				{
+					data.map(episodeData => (
+				<PlaylistTrack key={episodeData._id}>
 				<PlaylistTrackImg>
 					<Image
-			          src={otherEpisodeData.episodeLogo}
+			          src={episodeData.episodeLogo}
 			          alt="episode art"
 			          width={25}
 			          height={25}
 			          layout="responsive"
 			        />
 				</PlaylistTrackImg>
-				<PlaylistTrackPlayBtn onClick={() => dispatch(setPodcastPlayerData(otherEpisodeData))}>
+				<PlaylistTrackPlayBtn onClick={() => dispatch(setPodcastPlayerData(episodeData))}>
 					{
               isPlaying
                 ? (<PauseCircleOutlineIcon />)
@@ -47,24 +46,24 @@ const PlayerPlaylist = ({ playlist }:PlayerPlaylistProps) => {
             }
 				</PlaylistTrackPlayBtn>
 			<PlaylistTrackTeAndNnContainer>
-				<PlaylistTrackTitle>{stringTruncate(otherEpisodeData.episodeTitle, 20)}</PlaylistTrackTitle>
-				<PlaylistTrackNarration>{stringTruncate(otherEpisodeData.episodeDescription, 30)}</PlaylistTrackNarration>
+				<PlaylistTrackTitle>{stringTruncate(episodeData.episodeTitle, 20)}</PlaylistTrackTitle>
+				<PlaylistTrackNarration>{stringTruncate(episodeData.episodeDescription, 30)}</PlaylistTrackNarration>
 			</PlaylistTrackTeAndNnContainer>
 			<PlaylistTrackDelete onClick={() => {
-                    if(!loading && session) removeFromPlaylistMutation.mutate({episodeId: _id, userId: session.user._id })
+                    if(!loading && session) removeFromPlaylistMutation.mutate({episodeId: episodeData._id, userId: session.user._id })
                }}>
 				<CloseIcon />
 			</PlaylistTrackDelete>
 			</PlaylistTrack>
           
         ))
-        :
-        (<p>Loading Playlist</p>)
-			}
-			</>
+				}
+				</>
 			)
-		
-		)
+		}
+		return <p>Playlist Empty</p>;
+	}
+	return <p>Playlist Empty</p>;
 }
 
 export default PlayerPlaylist;

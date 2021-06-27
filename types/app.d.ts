@@ -13,6 +13,7 @@ interface IUser extends Document {
 }
 
 interface IEpisode extends Document {
+  _id: string;
   showId: string;
   episodeTitle: string;
   episodeDescription: string;
@@ -32,6 +33,7 @@ interface EpisodeProps{
   episodeLogo: string;
   episodeSlug: string;
   showSlug: string;
+  isInUserPlaylist: boolean;
 }
 
 
