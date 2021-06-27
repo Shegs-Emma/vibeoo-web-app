@@ -105,7 +105,7 @@ const getUserPlaylist = async () => {
 const addToUserPlaylist = async (episodeUpdateInfo:{userId: string, episodeId: string}) => {
   const response = await axios({
     method: 'POST',
-    url: '/api/user/management/playlist',
+    url: 'api/user/management/playlist',
     data: {
       ...episodeUpdateInfo,
     },
@@ -117,7 +117,7 @@ const removeFromUserPlaylist= async (episodeUpdateInfo:{userId: string, episodeI
   console.log("him")
   const response = await axios({
     method: 'DELETE',
-    url: '/api/user/management/playlist',
+    url: 'api/user/management/playlist',
     data: {
       ...episodeUpdateInfo,
     },
