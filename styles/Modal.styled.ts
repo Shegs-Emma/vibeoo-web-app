@@ -3,8 +3,8 @@ import Dialog from '@material-ui/core/Dialog';
 
 const StyledDialog = styled(Dialog)`
     & .MuiDialog-paper {
-        /* width: 400px; */
-        background-color: red;
+        width: 30rem;
+        background-color: white;
     }
      & .MuiDialogContent-root {
         margin-top: -1.76rem;

@@ -6,7 +6,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { StyledButton } from '../styles/Global.styled';
 import {
   LoginSignupContainer, LoginSignupTitle, LoginSignupFormContainer, LoginSignupInputField,
-  LoginSignupDivider, SocialSignupBtn,
+  LoginSignupDivider, SocialSignupBtn, Divider, HrLine, TextDisplay, H3, SpanText,
 } from '../styles/LoginSignup.styled';
 import { loginSchema, signupSchema } from '../lib/utils/form/yup-schemas';
 import { loginUser, registerPendingUser } from '../lib/api/user-api-helpers';
@@ -17,7 +17,7 @@ type LoginSignupProp = {
 }
 
 const LoginSignup = ({ type }: LoginSignupProp) => {
-	const [btnText, setBtnText] = useState(type === 'login' ? 'Login' : 'Sign up')
+	const [btnText, setBtnText] = useState(type === 'login' ? 'Login' : 'Sign up');
 	const [disableBtn, setDisableBtn] = useState(false);
   const submitBtnRef = useRef<HTMLButtonElement>(null);
   // const initialValuesLogin:
@@ -114,14 +114,16 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
                 error={!!(touched.password && errors.password)}
                 helperText={errors.password}
               />
-              <Typography>Forgot password?</Typography>
               <StyledButton
                 disabled={disableBtn}
                 type="submit"
+                notransform
               >
                 {btnText}
 
               </StyledButton>
+              <Typography>Forgot password?</Typography>
+              
               {/* <SocialSignupBtn
                 aria-controls="twitter sign-up button"
                 aria-haspopup="false"
@@ -132,6 +134,12 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
                 Sign up with Twitter
 
               </SocialSignupBtn> */}
+
+              <Divider>
+                <HrLine />
+                <TextDisplay>OR</TextDisplay>
+                <HrLine />
+              </Divider>
               <SocialSignupBtn
                 aria-controls="facebook sign-up button"
                 aria-haspopup="false"
@@ -142,9 +150,23 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
                   signIn('facebook', { callbackUrl: `${process.env.NEXTAUTH_URL}/listen` });
                 }}
               >
-                Sign up with Facebook
+                <SpanText social>Sign up with Facebook</SpanText>
 
               </SocialSignupBtn>
+              <SocialSignupBtn
+                aria-controls="twitter sign-up button"
+                aria-haspopup="false"
+                variant="contained"
+                startIcon={<ArrowRightIcon />}
+                socialMedia="twitter"
+                onClick={() => {
+                  signIn('twitter', { callbackUrl: `${process.env.NEXTAUTH_URL}/listen` });
+                }}
+              >
+                <SpanText social> Sign up with Twitter </SpanText>
+
+              </SocialSignupBtn>
+
               <SocialSignupBtn
                 aria-controls="gmail sign-up button"
                 aria-haspopup="false"
@@ -155,9 +177,12 @@ const LoginSignup = ({ type }: LoginSignupProp) => {
                   signIn('google', { callbackUrl: `${process.env.NEXTAUTH_URL}/listen` });
                 }}
               >
-                Sign up with Gmail
+                <SpanText social>Sign up with Google </SpanText>
 
               </SocialSignupBtn>
+
+              <H3>Already have an account? <SpanText>Login</SpanText></H3>
+
             </LoginSignupFormContainer>
           </form>
         )}

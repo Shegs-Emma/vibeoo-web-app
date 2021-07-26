@@ -9,11 +9,13 @@ const activePage = () => (
         `
 );
 
-const StyledButton = styled(Button)<{bgcolor?: string}>`
+const StyledButton = styled(Button)<{bgcolor?: string, notransform?: boolean}>`
     background-color: ${(props) => (props.bgcolor === 'light' ? 'fff' : 'Yellow')};
     padding-left: 1.48rem;
     padding-right: 1.48rem;
     border-radius: 50px;
+    width: ${({ notransform }) => (notransform ? '100%' : '')};
+    text-transform: ${({ notransform }) => (notransform ? 'none' : 'uppercase')}
     &:hover {
         background-color: ${(props) => (props.bgcolor === 'light' ? 'fff' : 'Yellow')};
     }

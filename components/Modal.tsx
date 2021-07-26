@@ -31,7 +31,7 @@ const GeneralModal = () => {
       <StyledDialog
         aria-labelledby="transition-modal-title"
         open={modalDialogState.isVisible}
-
+        scroll="body"
       >
         <DialogActions>
           <IconButton aria-label="close" className="hg" onClick={handleClose}>
